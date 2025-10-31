@@ -12,28 +12,52 @@ $cars = [
         'price' => '2 000 000 ₸',
         'image' => 'images/medium_with_watermark_toyota-camry-almati-almaty-4601.jpg',
         'description' => 'Двигатель: 2.5L, Мощность: 181 л.с., Автомат, Седан',
-        'link' => 'camry.php'
+        'year' => 2021,
+        'fuel' => 'Бензин',
+        'mileage' => '15 000 км',
+        'drive' => 'Передний привод',
+        'seats' => 5,
+        'color' => 'Серебристый',
+        'features' => 'ABS, Подушки безопасности, Климат-контроль, Мультимедиа'
     ],
     [
         'name' => 'BMW X5',
         'price' => '5 500 000 ₸',
         'image' => 'images/BMW-X5M-F95-rendering-1-830x553.jpg',
         'description' => 'Двигатель: 3.0L, Мощность: 340 л.с., Автомат, Кроссовер',
-        'link' => 'bmw.php'
+        'year' => 2022,
+        'fuel' => 'Бензин',
+        'mileage' => '10 000 км',
+        'drive' => 'Полный привод',
+        'seats' => 5,
+        'color' => 'Черный',
+        'features' => 'Камера 360°, Навигация, Адаптивный круиз-контроль, Подогрев сидений'
     ],
     [
         'name' => 'Mercedes-Benz E-Class',
         'price' => '4 800 000 ₸',
         'image' => 'images/03_e_class_high_tech_silver_selected.jpg',
         'description' => 'Двигатель: 2.0L, Мощность: 197 л.с., Автомат, Седан',
-        'link' => 'mercedes.php'
+        'year' => 2021,
+        'fuel' => 'Дизель',
+        'mileage' => '20 000 км',
+        'drive' => 'Задний привод',
+        'seats' => 5,
+        'color' => 'Серебристый',
+        'features' => 'Подушки безопасности, Климат-контроль, Подогрев руля, Мультимедиа'
     ],
     [
         'name' => 'Audi Q7',
         'price' => '6 200 000 ₸',
         'image' => 'images/A241887_large.jpg',
         'description' => 'Двигатель: 3.0L, Мощность: 333 л.с., Автомат, Внедорожник',
-        'link' => 'audi.php'
+        'year' => 2022,
+        'fuel' => 'Бензин',
+        'mileage' => '5 000 км',
+        'drive' => 'Полный привод',
+        'seats' => 7,
+        'color' => 'Темно-серый',
+        'features' => 'Камера 360°, Панорамная крыша, Навигация, Подогрев сидений'
     ]
 ];
 ?>
@@ -105,7 +129,7 @@ $cars = [
         .car-card {
             background: rgba(0, 0, 0, 0.85);
             border-radius: 10px;
-            width: 260px;
+            width: 280px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             transition: transform 0.3s, box-shadow 0.3s;
@@ -204,17 +228,19 @@ $cars = [
                 <div class="car-card-content">
                     <h3><?= htmlspecialchars($car['name']) ?></h3>
                     <p><?= htmlspecialchars($car['description']) ?></p>
+                    <p>Год выпуска: <?= $car['year'] ?> | Пробег: <?= $car['mileage'] ?> | Привод: <?= htmlspecialchars($car['drive']) ?> | Цвет: <?= htmlspecialchars($car['color']) ?></p>
+                    <p>Особенности: <?= htmlspecialchars($car['features']) ?></p>
                     <p class="price"><?= $car['price'] ?></p>
-                    <a class="buy-btn" href="<?= $car['link'] ?>">Купить</a>
+                    <a class="buy-btn" href="buy.php?car=<?= urlencode($car['name']) ?>">Купить</a>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
 </main>
 
-<footer>
-    &copy; <?= date('Y') ?> АвтоМаркет — лучшие машины! Разработано с ❤️ <a href="#">AutoWeb</a>
-</footer>
+    <footer>
+        &copy; <?= date('Y') ?> АвтоМаркет — лучшие машины! Разработано с ❤️ <a href="#">AutoWeb</a>
+    </footer>
 
 </body>
 </html>
