@@ -29,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$username]);
             $userRow = $stmt->fetch();
 
-            if ($userRow && password_verify($password, $userRow['password'])) 
+            // ✅ Исправленный блок if/else
+            if ($userRow && password_verify($password, $userRow['password'])) {
                 $_SESSION['username'] = $userRow['username'];
                 $success = true;
                 $message = "Авторизация успешна! Сейчас вы будете перенаправлены...";
@@ -113,17 +114,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if ($message): ?>
         <div class="message"><?= htmlspecialchars($message) ?></div>
     <?php endif; ?>
+
     <?php if (!$success): ?>
-    <form method="POST" action="">
-        <label for="username">Логин:</label>
-        <input type="text" id="username" name="username" required />
+        <form method="POST" action="">
+            <label for="username">Логин:</label>
+            <input type="text" id="username" name="username" required />
 
-        <label for="password">Пароль:</label>
-        <input type="password" id="password" name="password" required />
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required />
 
-        <input type="submit" value="Войти" />
-    </form>
+            <input type="submit" value="Войти" />
+        </form>
     <?php endif; ?>
+
     <a href="register.php" class="register-link">Регистрация</a>
 </div>
 
